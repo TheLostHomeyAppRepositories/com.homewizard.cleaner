@@ -5,7 +5,9 @@
     "failed": "Ongeldige inloggegevens",
     "save": "Inloggen",
     "saving": "Inloggen",
-    "error": "Er is iets misgegaan, probeer het opnieuw."
+    "error": "Er is iets misgegaan, probeer het opnieuw.",
+    "noemail": "Voer een emailadres in",
+    "nopass": "Voer een wachtwoord in"
   },
   "errors": {
     "unreachable": "Apparaat onbereikbaar"

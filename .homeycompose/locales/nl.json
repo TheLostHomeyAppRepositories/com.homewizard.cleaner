@@ -5,6 +5,8 @@
         "failed": "Ongeldige inloggegevens",
         "save": "Inloggen",
         "saving": "Inloggen",
+        "noemail": "Voer een emailadres in",
+        "nopass": "Voer een wachtwoord in",
         "error": "Er is iets misgegaan, probeer het opnieuw."
     },
     "errors": {

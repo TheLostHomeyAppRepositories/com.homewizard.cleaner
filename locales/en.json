@@ -5,7 +5,9 @@
     "failed": "Invalid credentials",
     "save": "Login",
     "saving": "Logging in",
-    "error": "Something went wrong, try again"
+    "error": "Something went wrong, try again",
+    "noemail": "Enter an email address",
+    "nopass": "Enter a password"
   },
   "errors": {
     "unreachable": "Device unreachable"

@@ -15,10 +15,12 @@
       <div class="homey-form-group">
         <label class="homey-form-label" for="email" data-i18n="pair.email">Email address</label>
         <input class="homey-form-input" id="email" type="text" value="" />
+        <p id="noemail" class="error" data-i18n="pair.noemail"></p>
       </div>
       <div class="homey-form-group">
         <label class="homey-form-label" for="password" data-i18n="pair.password">Password</label>
         <input class="homey-form-input" id="password" type="password" value="" />
+        <p id="nopass" class="error" data-i18n="pair.nopass"></p>
       </div>
     </fieldset>
     <p id="failed" class="error" data-i18n="pair.failed">Invalid credentials</p>
@@ -28,13 +30,24 @@
       const emailElement = document.getElementById('email');
       const passwordElement = document.getElementById('password');
       const errorElement = document.getElementById('failed');
+      const noEmailElement = document.getElementById('noemail');
+      const noPassElement = document.getElementById('nopass');
       const saveElement = document.getElementById('save');
-      errorElement.style.display = 'none';
         saveElement.addEventListener("click", function (e) {
           setSaving();
           const email = emailElement.value;
           const password = passwordElement.value;
           Homey.emit("login", { email: email, password: password  }).then(function (result) {
+            if (!email) {
+              noEmailElement.style.display = "block";
+              setSave();
+              return;
+            }
+            if (!password) {
+              noPassElement.style.display = "block";
+              setSave();
+              return;
+            }
             if (result === false) {
               errorElement.style.display = 'block';
               setSave();
@@ -49,6 +62,9 @@
         }
 
         function setSaving() {
+          errorElement.style.display = 'none';
+          noEmailElement.style.display = 'none';
+          noPassElement.style.display = 'none';
           saveElement.className = 'homey-button-primary-full is-loading';
           saveElement.textContent = Homey.__('pair.saving');
           emailElement.disabled = true;

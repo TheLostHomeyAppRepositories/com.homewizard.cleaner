@@ -5,6 +5,8 @@
         "failed": "Invalid credentials",
         "save": "Login",
         "saving": "Logging in",
+        "noemail": "Enter an email address",
+        "nopass": "Enter a password",
         "error": "Something went wrong, try again"
     },
     "errors": {
