@@ -10,6 +10,24 @@ module.exports = class MyDriver extends Homey.Driver {
    */
   async onInit() {
     this.log('MyDriver has been initialized');
+    const dockAction = this.homey.flow.getActionCard('dock');
+    const startAction = this.homey.flow.getActionCard('start');
+    const suspendAction = this.homey.flow.getActionCard('suspend');
+    dockAction.registerRunListener(async (args, state) => {
+      const device = args.device;
+      await device.sendCommand('charge');
+      return true;
+    });
+    startAction.registerRunListener(async (args, state) => {
+      const device = args.device;
+      await device.sendCommand('work');
+      return true;
+    });
+    suspendAction.registerRunListener(async (args, state) => {
+      const device = args.device;
+      await device.sendCommand('suspend');
+      return true;
+    });
   }
 
   async onPair(session) {

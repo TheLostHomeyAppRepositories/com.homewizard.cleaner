@@ -41,9 +41,6 @@ module.exports = class DeluxeDevice extends Homey.Device {
         this.setStoreValue('state_update_16012025_migration_complete', true);
       }
 
-      const dockAction = this.homey.flow.getActionCard('dock');
-      const startAction = this.homey.flow.getActionCard('start');
-      const suspendAction = this.homey.flow.getActionCard('suspend');
       this.registerCapabilityListener('dock', async (value) => {
         if (value === true) {
           await this.sendCommand('charge');
@@ -58,18 +55,6 @@ module.exports = class DeluxeDevice extends Homey.Device {
         if (value === true) {
           await this.sendCommand('suspend');
         }
-      });
-      dockAction.registerRunListener(async (args, state) => {
-        await this.sendCommand('charge');
-        return true;
-      });
-      startAction.registerRunListener(async (args, state) => {
-        await this.sendCommand('work');
-        return true;
-      });
-      suspendAction.registerRunListener(async (args, state) => {
-        await this.sendCommand('suspend');
-        return true;
       });
       const endpoint = this.getStoreValue('endpoint');
       const token = await this.getToken();
